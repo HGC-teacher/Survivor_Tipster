@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hello {{ user.username }}, welcome to Cosy Coach Survivor!</h1>
+    <hr>
+    <h2>Here's all the latest Survivor gossip</h2>
+    <hr>
+    {% for players in players %}
+        <div><p>{{ players.player.username }} says: <b>{{ players.body }}</b></p></div>
+    {% endfor %}
+{% endblock %}

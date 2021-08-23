@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr><th>Item</th><th>Price</th><th>Delivery Available?</th></tr>
+        </thead>
+        <tbody>
+    {% for items in items %}
+            <tr><td>{{ items.item }}</td><td>${{ items.price }}</td><td>{{ items.delivery}}</td></tr>
+    {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

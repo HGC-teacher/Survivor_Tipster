@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Microblog</title>
+      {% else %}
+      <title>Welcome to Microblog</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Suvivor Australia 2021: 
+            <a href="/index">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/bet">Who's Going Home Next?</a>
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
