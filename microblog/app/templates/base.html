@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" href="/css/style.css">
       {% if title %}
       <title>{{ title }} - Microblog</title>
       {% else %}
@@ -8,12 +9,16 @@
       {% endif %}
     </head>
     <body>
-        <div>Suvivor Australia 2021: 
+        <div class="topnav">
             <a href="/index">Home</a>
             <a href="/menu">Menu</a>
             <a href="/bet">Who's Going Home Next?</a>
         </div>
-        <hr>
+        <div class='content'>
         {% block content %}{% endblock %}
+        </div>
+        <div class="footer">
+            <p>Staff social event: Survivor Tipping Game</p>
+        </div>
     </body>
 </html>
