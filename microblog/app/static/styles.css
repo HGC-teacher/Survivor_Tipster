@@ -8,6 +8,20 @@
     font-family: Arial, Helvetica, sans-serif;
   }
   
+  .table {
+    border-spacing: 0;
+    margin: 1rem;
+    background-color: #d5e0f2;
+}
+.table-row:nth-child(even) {
+    background-color: #fbffe0
+}
+.table-header {
+    text-align: left;
+}
+.table-cell {
+    padding: 10px;
+}
   /* Style the top navigation bar */
   .topnav {
     overflow: hidden;
@@ -30,6 +44,11 @@
     color: black;
   }
   
+  /* Style logo */
+  .logo {
+    float:right;
+  }
+
   /* Style the content */
   .content {
     background-color: rgb(250, 215, 102);

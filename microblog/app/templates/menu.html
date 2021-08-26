@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-        <thead>
-            <tr><th>Item</th><th>Price</th><th>Delivery Available?</th></tr>
-        </thead>
-        <tbody>
-    {% for items in items %}
-            <tr><td>{{ items.item }}</td><td>${{ items.price }}</td><td>{{ items.delivery}}</td></tr>
-    {% endfor %}
-        </tbody>
+    <table class="table">
+        <tr class="table-header">
+            <th class="table-cell">Item</th>
+            <th class="table-cell">Price</th>
+            <th class="table-cell">Delivery Available?</th>
+        </tr>
+        {% for items in items %}
+            <tr class="table-row">
+                <td class="table-cell">{{ items.item }}</td>
+                <td class="table-cell">${{ items.price }}</td>
+                <td class="table-cell">{{ items.delivery}}</td>
+            </tr>
+        {% endfor %}
     </table>
 {% endblock %}
