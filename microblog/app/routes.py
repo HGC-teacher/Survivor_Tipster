@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import Flask, render_template, request
 
 @app.route('/')
 @app.route('/index')
@@ -43,3 +43,17 @@ def bet():
     user = {'username': 'Kylie'}
     how_to='This is how to bet'
     return render_template('bet.html', user=user, how_to=how_to)
+
+@app.route('/sign_up')
+def sign_up():
+    return render_template('sign-up.html')
+
+@app.route('/sign_up_received', methods = ["POST"])
+def sign_up_received():
+    new_user = {}
+    if request.method == "POST":
+        new_user['name'] = request.form.get('name')
+        new_user['pword'] = request.form.get('pword')
+        new_user['domain'] = request.form.get('domain')
+
+        return render_template('sign_up_received.html', new_user = new_user)
