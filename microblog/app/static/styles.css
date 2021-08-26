@@ -11,10 +11,10 @@
   .table {
     border-spacing: 0;
     margin: 1rem;
-    background-color: #d5e0f2;
+    background-color: #dd940d;
 }
 .table-row:nth-child(even) {
-    background-color: #fbffe0
+    background-color: #faf4c3
 }
 .table-header {
     text-align: left;

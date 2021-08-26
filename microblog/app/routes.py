@@ -46,10 +46,13 @@ def bet():
 
 @app.route('/sign_up')
 def sign_up():
-    return render_template('sign-up.html')
+    return render_template('sign_up.html')
 
-@app.route('/sign_up_received', methods = ["POST"])
-def sign_up_received():
+@app.route('/signup-received', methods = ["POST"])
+def submit_sign_up():
+    #print(request.form)
+    #return ("Sign Up received")
+
     new_user = {}
     if request.method == "POST":
         new_user['name'] = request.form.get('name')
