@@ -1,21 +1,22 @@
+import csv
 from app import app
 from flask import Flask, render_template, request
+
+def load_from_file(fname):
+    # loads the contents from a given csv file
+    contents = []
+    with open(fname) as fp:
+        reader = csv.DictReader(fp)
+        for row in reader:
+            contents.append(row)
+    return contents
 
 @app.route('/')
 @app.route('/index')
 def index():
+    comments = load_from_file('chat.csv')
     user = {'username': 'Kylie'}
-    players = [
-        {
-            'player': {'username': 'John'},
-            'body': 'George drives me crazy!'
-        },
-        {
-            'player': {'username': 'Susan'},
-            'body': 'Hayley for prime minister'
-        }
-    ]
-    return render_template('index.html', title='Cosy Couch Survivor', user=user, players=players)
+    return render_template('index.html', title='Cosy Couch Survivor', user=user, comments=comments)
 
 # adding new navigation links
 @app.route('/orders')

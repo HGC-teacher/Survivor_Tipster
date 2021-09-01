@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Hello {{ user.username }}, welcome to Cosy Coach Survivor!</h1>
     <h2>Here's all the latest Survivor gossip</h2>
-    {% for p in players %}
-        <div><p>{{ p.player.username }} says: <b>{{ p.body }}</b></p></div>
+    {% for item in comments %}
+        <div><p>{{ item.user }} says: <b>{{ item.comment }}</b></p></div>
     {% endfor %}
 {% endblock %}
