@@ -1,7 +1,7 @@
 import csv
 from app import app
 from flask import Flask, render_template, request
-
+TITLE = "Cosy Couch Survivor"
 def load_from_file(fname):
     # loads the contents from a given csv file
     contents = []
@@ -14,36 +14,48 @@ def load_from_file(fname):
 @app.route('/')
 @app.route('/index')
 def index():
-    comments = load_from_file('chat.csv')
+    comments = load_from_file('../chat.csv')
     user = {'username': 'Kylie'}
-    return render_template('index.html', title='Cosy Couch Survivor', user=user, comments=comments)
+    return render_template('index.html', title=TITLE, user=user, comments=comments)
 
 # adding new navigation links
 @app.route('/orders')
 def orders():
-    return render_template('orders.html', title='Cosy Couch Survivor')
+    return render_template('orders.html', title=TITLE)
 
-@app.route('/menu')
+@app.route('/contestants')
 def menu():
-    items = [
-        { 'item': 'Hot Chips',
-          'price': 4.00,
-          'delivery': 'Yes'},
-        { 'item': 'Burger',
-          'price': 8.00,
-          'delivery': 'Yes'},
-        { 'item': 'Fish of the day',
-          'price': 12.00,
-          'delivery': 'No'}
-    ]
+    players = load_from_file('../competitors.csv')
         
-    return render_template('menu.html', items=items)
+    return render_template('contestants.html', players=players, title=TITLE)
 
-@app.route('/bet')
+@app.route('/bet', methods = ['GET', 'POST'])
 def bet():
-    user = {'username': 'Kylie'}
-    how_to='This is how to bet'
-    return render_template('bet.html', user=user, how_to=how_to)
+    # Check if the form has been submitted (is a POST request)
+    if request.method == 'POST':
+        # Get data from the form and put in dictionary
+        vote = {}
+        vote['voter'] = request.form.get('voter')
+        vote['date'] = request.form.get('tribal_date')
+        vote['name'] = request.form.get('contestant')
+        # Load the votes from the CSV file and add the vote
+        votes = load_from_file('../votes.csv')
+        votes.append(vote)
+        # Open up the csv file and overwrite the contents
+        with open('../votes.csv', 'w', newline='') as file:
+            fieldnames = ['voter', 'date', 'name']
+            writer = csv.DictWriter(file, fieldnames = fieldnames)
+            writer.writeheader()
+            writer.writerows(votes)
+        
+        # Returns the view with a message that the student has been added
+        return render_template('vote_successful.html', vote = vote, title=TITLE)
+
+    else:
+        user = {'username': 'Kylie'}
+        how_to='This is how to bet'
+        contestants_left = ["Hayley", "George", "Wai", "Flick", "Cara"]
+        return render_template('bet.html', user=user, how_to=how_to, contestants_left=contestants_left, title=TITLE)
 
 @app.route('/sign_up')
 def sign_up():
@@ -60,4 +72,4 @@ def submit_sign_up():
         new_user['pword'] = request.form.get('pword')
         new_user['domain'] = request.form.get('domain')
 
-        return render_template('sign_up_received.html', new_user = new_user)
+        return render_template('sign_up_received.html', new_user = new_user, title=TITLE)

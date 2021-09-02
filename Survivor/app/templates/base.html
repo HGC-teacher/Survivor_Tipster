@@ -3,15 +3,15 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
       {% if title %}
-      <title>{{ title }} - Microblog</title>
+      <title>{{ title }}</title>
       {% else %}
-      <title>Welcome to Microblog</title>
+      <title>Welcome to My Site</title>
       {% endif %}
     </head>
     <body>
         <div class="topnav">
             <a href="/index">Home</a>
-            <a href="/menu">Menu</a>
+            <a href="/contestants">Contestants</a>
             <a href="/bet">Vote</a>
             <a href="/sign_up" style="float:right">Sign Up</a>
             <a href="/login" style="float:right">Login</a>
